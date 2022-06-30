@@ -13,30 +13,32 @@
 <body>
     <div id="app">
         <div class="nav-bar"></div>
-        <div class="cart">Cart({{ cart}})</div>
-        <div class="product-display"></div>
-        <div class="product-container ">
-            <div class="product-image">
-                <img :src="image">
-            </div>
-            <div class="product-info">
-                <h1> <a v-bind:href="link">{{ product }}</a></h1>
 
-                <h1>{{ info }}</h1>
+        <div class="cart">Cart({{ cart }})</div>
 
-                <p v-if="inventory > 10 ">In Stock </p>
-                <p v-else-if="inventory <= 10 && inventory > 0 ">In Stock </p>
-                <p v-else>Out of Stock </p>
-                <ul>
-                    <li v-for="detail in details ">{{detail }} </li>
-                </ul>
-                <p> {{size}}</p>
-                <div v-for="variant in variants" :key="variant.id" @mouseover="updateImage(variant.image)">{{ variant.color}}</div>
-                <button class=" button " @click="addToCart">Add to Cart</button>
-                <br>
-                <button class="button" @click="changeStatus">Change</button>
+        <div class="product-display">
+            <div class="product-container">
+                <div class="product-image">
+                    <img :src="image">
+                </div>
+                <div class="product-info">
+                    <h1> <a v-bind:href="link">{{ product }}</a></h1>
+                    <h2>{{info}}</h2>
+                    <p v-if="inventory <= 10 && inventory >0 && inStock">In Stocks</p>
+                    <p v-else>Out of Stocks</p>
+                    <p v-if="onSale">On sale</p>
+                    <p v-else>Comming soon</p>
+                    <ul>
+                        <li v-for="detail in details">{{detail}}</li>
+                    </ul>
+                    <p>{{ sizes }}</p>
+                    <div v-for="variant in variants" :key="variant.id" @mouseover="updateImage(variant.image)">{{ variant.color }}</div>
+                    <button class="button" @click="addToCart">Add to Cart</button>
+                    <button class="button" @click="updateStock">Stock</button>
+                </div>
             </div>
         </div>
+        
     </div>
 
     <!-- Import Js -->

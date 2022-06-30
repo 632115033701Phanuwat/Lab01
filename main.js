@@ -1,42 +1,35 @@
 const app = Vue.createApp({
     data() {
-
         return {
+            link: 'http://www.camt.cmu.ac.th/',
+            info: 'Shoes to die',
             product: 'Shoes',
-            info: 'MARK ',
             image: './assets/images/socks_green.jpg',
-            link: 'http://www.camt.cmu.ac.th/index.php/th/',
             inStock: true,
-            inventory: 100,
-            details: ['50% cotton', '30% wool', '20% polyester '],
+            onSale: true,
+            inventory: 10,
+            details: ['50% cotton','30% wool','20% polyester'],
+            sizes: ['S','M','L'],
             variants: [
                 { id: 2234, color: 'green', image: './assets/images/socks_green.jpg' },
                 { id: 2235, color: 'blue', image: './assets/images/socks_blue.jpg' }
-
             ],
-            size: ['Size = S,M,L'],
-            cart: 0,
-            count: 0
-
-
+            cart: 0
         }
-
     },
-    methods: {
-        addToCart() {
+    methods:{
+        addToCart(){
             this.cart += 1
         },
         updateImage(variantImage) {
             this.image = variantImage
         },
-        changeStatus() {
-            this.count += 1
-            if (this.count % 2 !== 0) {
-                this.inventory = 0
-            } else if (this.count % 2 === 0) {
-                this.inventory = 100
+        updateStock() {
+            if(this.inStock == true){
+                this.inStock = false
+            } else {
+                this.inStock = true
             }
-
         }
     }
 })
